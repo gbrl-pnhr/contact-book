@@ -1,6 +1,9 @@
+<script setup lang="ts">
+  import Component from '@/components/Component.vue';
+</script>
+
 <template>
-  <div class="home">
-      <h1>HOME</h1>
-  </div>
+
+  <Component />
 
 </template>
