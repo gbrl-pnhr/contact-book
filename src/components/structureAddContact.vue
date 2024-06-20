@@ -1,17 +1,53 @@
-<script setup lang="ts">
-    import headerContactBook from '@/components/headerContactBook.vue';
+<script lang="ts">
+import HeaderContactBook from './headerContactBook.vue';
+
+export default{
+    data(){
+        return{
+            contactData: {
+            name: '',
+            id: 0,
+            phone: '',
+            email: ''
+            },
+            newId: 2
+        }
+    },
+    components:{
+        HeaderContactBook
+    },
+    emits:['response'],
+    created() {
+        this.$emit('response','contactData')
+    },
+    methods:{
+        incrementId(){
+            this.newId++;
+            this.contactData.id = this.newId;
+        }
+    }
+
+}
 </script>
 <template>
     <div class="conteiner">
-        <headerContactBook />
+        <HeaderContactBook />
         <div class="addContact">
-            <h3>Name:</h3>
-            <input type="text">
-            <h3>Number:</h3>
-            <input type="text">
-            <h3>Email:</h3>
-            <input type="text"><br><br>
-            <button>ADICIONAR</button>
+            <form action="">
+                <label>Nome:</label>
+                <br>
+                <input @input="contactData.name" type="text">
+                <br>
+                <label>Telefone:</label>
+                <br>
+                <input @input="contactData.phone" type="text">
+                <br>
+                <label>Email:</label>
+                <br>
+                <input @input="contactData.email" type="text">
+                <br><br>
+                <button @click="incrementId" to="/">ADICIONAR</button>
+            </form>
         </div>
         
     </div>
@@ -55,6 +91,10 @@
         border: white;
         height: 30px;
         width: 60%;
+    }
+
+    label{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     }
     
 </style>
