@@ -2,13 +2,13 @@ import { createApp } from 'vue'
 
 import { createRouter, createWebHistory } from 'vue-router'
 
-//import './style.css'
-
 import App from './App.vue'
 
 import Home from '@/views/Home.vue'
 
-import About from '@/views/About.vue'
+import detailsContacts from '@/views/detailsContacts.vue'
+
+import addContact from '@/views/addContact.vue'
 
 const router = createRouter({
 
@@ -18,7 +18,9 @@ routes: [
 
 { path: '/', name: 'Home', component: Home },
 
-{ path: '/about', name: 'About', component: About }
+{ path: '/addcontact', name: 'AddContact', component: addContact },
+
+{path: '/detailscontact', name: 'DetailsContacts', component: detailsContacts},
 
 ],
 
@@ -30,4 +32,3 @@ createApp(App)
 
 .mount('#app')
 
-//DEVELOP ENVIROMENT!!

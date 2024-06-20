@@ -1,13 +1,10 @@
+<script setup lang="ts">
+ // import structureHome from './components/structureHome.vue';
+</script>
 <template>
-  <img src="./components/icons/IconEcosystem.vue" alt="Vue logo">
   <RouterView></RouterView>
-  <br>
-  <RouterLink to = "/">Home</RouterLink>
-  <RouterLink to = "/about">About</RouterLink>
-  <br>
-
+  
+  <!--<structureHome />-->
 </template>
 
-<style>
 
-</style>
