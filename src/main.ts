@@ -20,7 +20,7 @@ routes: [
 
 { path: '/addcontact', name: 'AddContact', component: addContact },
 
-{ path: '/detailscontact', name: 'DetailsContacts', component: detailsContacts},
+{ path: '/detailscontact/:id', name: 'DetailsContacts', component: detailsContacts},
 
 ],
 

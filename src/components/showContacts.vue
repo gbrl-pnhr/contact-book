@@ -13,7 +13,7 @@ export default{
 
 <template>
     <div>
-        <RouterLink v-for="contact in contactsList" :key="contact.name" to='/detalisContacts'>
+        <RouterLink v-for="contact in contactsList" :key="contact.name" :to="`/detailscontacts/${contact.id}`">
             <div class="contact">
                 {{ contact.name }}
             </div><br>

@@ -1,5 +1,22 @@
-<script setup lang="ts">
-    import HeaderContactBook from './headerContactBook.vue';
+<script lang="ts">
+import HeaderContactBook from './headerContactBook.vue';
+import sourceData from '@/data.json'
+
+export default{
+    components:{
+        HeaderContactBook
+    },
+    data(){
+        return{
+            displayContactData: {
+                name: '',
+                numberContact: '',
+                email: ''
+            },
+            contactList: sourceData.contacts
+        }
+    }
+}
 </script>
 
 <template>

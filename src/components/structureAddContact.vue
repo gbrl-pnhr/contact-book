@@ -8,7 +8,7 @@ export default{
             contactData: {
                 name: "",
                 id: 0,
-                phone: "",
+                numberContact: "",
                 email: ""
             },
             contactsList: sourceData.contacts
@@ -23,7 +23,7 @@ export default{
             this.contactsList.push({
                 name: this.contactData.name,
                 id: this.contactData.id.toString(),
-                numberContact: this.contactData.phone,
+                numberContact: this.contactData.numberContact,
                 email: this.contactData.email
             })           
         }
@@ -48,9 +48,10 @@ export default{
                 <br>
                 <input v-model="contactData.email" type="text">
                 <br><br>
-                <button @click="createNewContact" >
-                    <RouterLink to = "/" >ADICIONAR</RouterLink>
-                </button>
+            
+                <RouterLink to = "/" >
+                    <button @click="createNewContact" >ADICIONAR</button>
+                </RouterLink>
             </form>
         </div>
         
