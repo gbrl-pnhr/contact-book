@@ -7,7 +7,7 @@
             <nav id="homeLink">
             <RouterLink to = "/">Home</RouterLink>
             &nbsp &nbsp
-            <RouterLink to = "/addcontact">Add Contact</RouterLink>
+            <RouterLink to = "/addcontact">Adicionar Contato</RouterLink>
             </nav>
         </div>
     </header>

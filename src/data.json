@@ -1,0 +1,16 @@
+{
+  "contacts": [
+    {
+      "name": "Victor Manoel",
+      "id": "1",
+      "numberContact": "(85)994260736",
+      "email": "victor@test.com"
+    },
+    {
+      "name": "Gabriel Pinheiro",
+      "id": "2",
+      "numberContact": "(85)998557864",
+      "email": "gabriel.test@test.com"
+    }
+  ]
+}

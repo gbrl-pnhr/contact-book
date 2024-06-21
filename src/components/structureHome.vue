@@ -1,26 +1,14 @@
 <script setup lang="ts">
  import HeaderContactBook from './headerContactBook.vue';
+ import showContacts from './showContacts.vue';
+ 
 </script>
 
 <template>
     <div class="conteinerHome">
         <HeaderContactBook/>
         <div class="blockContacts">
-          <div class="contact">
-                <nav>
-                  <RouterLink to = "/detailscontact">DANILO RIBEIRO</RouterLink>
-                </nav>
-          </div>
-          <div class="contact">
-                <nav>
-                  <RouterLink to = "/detailscontact">GABRIEL PINHEIRO</RouterLink>
-                </nav>
-          </div>
-          <div class="contact">
-                <nav>
-                  <RouterLink to = "/detailscontact">VICTOR TIMBÓ</RouterLink>
-                </nav>
-          </div>
+          <showContacts/>
         </div>  
     </div>
   </template> 
