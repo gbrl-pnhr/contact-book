@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
+import { routes } from 'vue-router/auto-routes'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,9 +11,10 @@ const router = createRouter({
       component: Home
     },
     {
-      path: '/detailscontact/',
+      path: '/detailscontact/:id',
       name: 'detailscontact',
-      component: () => import('../views/detailsContacts.vue')
+      component: () => import('../views/detailsContacts.vue'),
+      props: route => ({params: route.params.id})
     },
     {
       path: '/addcontact',

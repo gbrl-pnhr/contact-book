@@ -1,29 +1,31 @@
 <script lang="ts">
 import HeaderContactBook from './headerContactBook.vue';
+import sourceData from '@/data.json'
 
 export default{
     data(){
         return{
             contactData: {
-            name: '',
-            id: 0,
-            phone: '',
-            email: ''
+                name: "",
+                id: 0,
+                phone: "",
+                email: ""
             },
-            newId: 2
+            contactsList: sourceData.contacts
         }
     },
     components:{
         HeaderContactBook
     },
-    emits:['response'],
-    created() {
-        this.$emit('response','contactData')
-    },
     methods:{
-        incrementId(){
-            this.newId++;
-            this.contactData.id = this.newId;
+        createNewContact(){
+            this.contactData.id = parseInt(this.contactsList[this.contactsList.length-1].id) + 1;
+            this.contactsList.push({
+                name: this.contactData.name,
+                id: this.contactData.id.toString(),
+                numberContact: this.contactData.phone,
+                email: this.contactData.email
+            })           
         }
     }
 
@@ -36,17 +38,19 @@ export default{
             <form action="">
                 <label>Nome:</label>
                 <br>
-                <input @input="contactData.name" type="text">
+                <input v-model="contactData.name" type="text">
                 <br>
                 <label>Telefone:</label>
                 <br>
-                <input @input="contactData.phone" type="text">
+                <input v-model="contactData.phone" type="text">
                 <br>
                 <label>Email:</label>
                 <br>
-                <input @input="contactData.email" type="text">
+                <input v-model="contactData.email" type="text">
                 <br><br>
-                <button @click="incrementId" to="/">ADICIONAR</button>
+                <button @click="createNewContact" >
+                    <RouterLink to = "/" >ADICIONAR</RouterLink>
+                </button>
             </form>
         </div>
         

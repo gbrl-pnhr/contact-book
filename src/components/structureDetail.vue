@@ -7,8 +7,8 @@
         <HeaderContactBook />
         <div id="details">
             <ul>
-                <li>Name: Danilo Ribeiro Alencar</li>
-                <li>Number: (88)9823443777</li>
+                <li>Nome: Danilo Ribeiro Alencar</li>
+                <li>Número: (88)9823443777</li>
                 <li>Email: danilo123@gmail.com</li>
             </ul>
         </div>
