@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { render } from 'vue';
 
+export const get =() =>{
 axios.get('https://6674787a75872d0e0a968ff7.mockapi.io/api/v1/contacBook')
   .then(response => {
     console.log(response)
@@ -12,8 +13,8 @@ axios.get('https://6674787a75872d0e0a968ff7.mockapi.io/api/v1/contacBook')
     
   });
 
-
-  const post = () =>{
+}
+  export const post = () =>{
     const data ={
       id:0,
       name: '',
@@ -33,7 +34,7 @@ axios.get('https://6674787a75872d0e0a968ff7.mockapi.io/api/v1/contacBook')
     });
   }
 
-  const put = () => {
+  export const put = () => {
     const data = {
       id:0,
       name: '',
@@ -52,7 +53,7 @@ axios.get('https://6674787a75872d0e0a968ff7.mockapi.io/api/v1/contacBook')
       
     });
   }
-const patch = () =>{
+export const patch = () =>{
   const data = {
     id:0,
     name: '',
@@ -72,7 +73,7 @@ const patch = () =>{
   });
 }
 
-const del = ()=> {
+export const del = ()=> {
   axios.delete('https://6674787a75872d0e0a968ff7.mockapi.io/api/v1/contacBook/${data.id}')
   .then(response => {
     console.log(response)
