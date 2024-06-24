@@ -1,5 +1,10 @@
-<script setup lang="ts">
+<script lang="ts">
   import structureHome from '@/components/structureHome.vue';
+  export default{
+    components:{
+      structureHome
+    }
+  }
 </script>
 
 <template>

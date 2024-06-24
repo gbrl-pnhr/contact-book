@@ -6,14 +6,12 @@ export default{
     components:{
         HeaderContactBook
     },
-    data(){
-        return{
-            displayContactData: {
-                name: '',
-                numberContact: '',
-                email: ''
-            },
-            contactList: sourceData.contacts
+    computed:{
+        contactId(){
+            return this.$route.params.id;
+        },
+        findContact(){
+            return sourceData.contacts.find(contact => contact.id === this.contactId)
         }
     }
 }
@@ -24,9 +22,11 @@ export default{
         <HeaderContactBook />
         <div id="details">
             <ul>
-                <li>Nome: Danilo Ribeiro Alencar</li>
-                <li>Número: (88)9823443777</li>
-                <li>Email: danilo123@gmail.com</li>
+                <li>Nome: {{ findContact?.name }}</li>
+                <br>
+                <li>Número: {{findContact?.numberContact }}</li>
+                <br>
+                <li>Email: {{findContact?.email }}</li>
             </ul>
         </div>
     </div>

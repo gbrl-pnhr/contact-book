@@ -2,7 +2,7 @@
  // import structureHome from './components/structureHome.vue';
 </script>
 <template>
-  <RouterView></RouterView>
+  <RouterView/>
   
   <!--<structureHome />-->
 </template>

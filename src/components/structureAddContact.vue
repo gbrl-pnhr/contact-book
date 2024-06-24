@@ -19,18 +19,64 @@ export default{
     },
     methods:{
         createNewContact(){
-            this.contactData.id = parseInt(this.contactsList[this.contactsList.length-1].id) + 1;
-            this.contactsList.push({
-                name: this.contactData.name,
-                id: this.contactData.id.toString(),
-                numberContact: this.contactData.numberContact,
-                email: this.contactData.email
-            })           
+            if(this.verifyInputs(this.contactData.name, this.contactData.numberContact, this.contactData.email)){
+                this.contactData.id = parseInt(this.contactsList[this.contactsList.length-1].id) + 1;
+                this.contactsList.push({
+                    name: this.contactData.name,
+                    id: this.contactData.id.toString(),
+                    numberContact: this.contactData.numberContact,
+                    email: this.contactData.email
+                });       
+            }else{
+                alert("Por favor, preencha todos os campos corretamente");
+            } 
+        },
+        verifyInputs(name: string, phone: string, email: string){
+            if(name === '' || phone === '' || email === ''){
+                return false;
+            }else{
+                if(this.validateEmail(email) && this.validateName(name)){
+                    return true
+                }else{
+                    return false;
+                }
+                
+            }
+        },
+        validateEmail(email: string){
+            if(email.includes('@')){
+                let validateEmail = email.split('@');
+                let validateDominion = validateEmail[1].split('.');
+                if(validateEmail[0].length === 0 || validateDominion.length < 2 || validateDominion[0].length === 0 || validateDominion[1] !== "com"){
+                    alert("ERRO EMAIL");
+                    return false;
+                }else{
+                    return true;
+                }
+            }else{
+                alert("ERRO EMAIL");
+                return false;
+            }
+        },
+        validatePhone(phone: string){},
+        validateName(name: string){
+            let countValidCaracter = 0
+            for(let id = 0; id < name.length; id++){
+                if(['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','ç',' '].includes(name[id].toLowerCase())){
+                    countValidCaracter++;
+                    if(countValidCaracter === name.length){
+                        return true;
+                    }
+                }else{
+                    alert("ERRO NOME ") ;
+                    return false;
+                }   
+            }
         }
     }
-
 }
 </script>
+
 <template>
     <div class="conteiner">
         <HeaderContactBook />
@@ -42,7 +88,7 @@ export default{
                 <br>
                 <label>Telefone:</label>
                 <br>
-                <input v-model="contactData.phone" type="text">
+                <input v-model="contactData.numberContact" type="text" >
                 <br>
                 <label>Email:</label>
                 <br>
