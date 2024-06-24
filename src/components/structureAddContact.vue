@@ -35,7 +35,7 @@ export default{
             if(name === '' || phone === '' || email === ''){
                 return false;
             }else{
-                if(this.validateEmail(email) && this.validateName(name)){
+                if(this.validateEmail(email) && this.validateName(name) && this.validatePhone(phone)){
                     return true
                 }else{
                     return false;
@@ -47,18 +47,23 @@ export default{
             if(email.includes('@')){
                 let validateEmail = email.split('@');
                 let validateDominion = validateEmail[1].split('.');
-                if(validateEmail[0].length === 0 || validateDominion.length < 2 || validateDominion[0].length === 0 || validateDominion[1] !== "com"){
-                    alert("ERRO EMAIL");
+                if(email.includes(' ') || validateEmail[0].length === 0 || validateDominion.length < 2 || validateDominion[0].length === 0 || validateDominion[1] !== "com"){
                     return false;
                 }else{
                     return true;
                 }
             }else{
-                alert("ERRO EMAIL");
                 return false;
             }
         },
-        validatePhone(phone: string){},
+        validatePhone(phone: string){
+            let verifyPhone = new RegExp('^\\([1-9]{2}\\)((9[0-9]{4}-[0-9]{4})|9[0-9]{8})$');
+            if(verifyPhone.test(phone)){
+                return true;
+            }else{
+                return false;
+            }
+        },
         validateName(name: string){
             let countValidCaracter = 0
             for(let id = 0; id < name.length; id++){
@@ -68,7 +73,6 @@ export default{
                         return true;
                     }
                 }else{
-                    alert("ERRO NOME ") ;
                     return false;
                 }   
             }
@@ -88,11 +92,11 @@ export default{
                 <br>
                 <label>Telefone:</label>
                 <br>
-                <input v-model="contactData.numberContact" type="text" >
+                <input v-model="contactData.numberContact" type="text" placeholder=" (DD)91234-5678 ou (DD)912345678">
                 <br>
                 <label>Email:</label>
                 <br>
-                <input v-model="contactData.email" type="text">
+                <input v-model="contactData.email" type="text" placeholder=" usuario@dominio.com">
                 <br><br>
             
                 <RouterLink to = "/" >
