@@ -1,7 +1,13 @@
-<script setup lang="ts">
+<script lang="ts">
  import HeaderContactBook from './headerContactBook.vue';
  import showContacts from './showContacts.vue';
- 
+
+ export default{
+  components:{
+    HeaderContactBook,
+    showContacts
+  }
+ }
 </script>
 
 <template>

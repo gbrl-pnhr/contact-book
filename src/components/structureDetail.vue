@@ -1,5 +1,20 @@
-<script setup lang="ts">
-    import HeaderContactBook from './headerContactBook.vue';
+<script lang="ts">
+import HeaderContactBook from './headerContactBook.vue';
+import sourceData from '@/data.json'
+
+export default{
+    components:{
+        HeaderContactBook
+    },
+    computed:{
+        contactId(){
+            return this.$route.params.id;
+        },
+        findContact(){
+            return sourceData.contacts.find(contact => contact.id === this.contactId)
+        }
+    }
+}
 </script>
 
 <template>
@@ -7,9 +22,11 @@
         <HeaderContactBook />
         <div id="details">
             <ul>
-                <li>Nome: Danilo Ribeiro Alencar</li>
-                <li>Número: (88)9823443777</li>
-                <li>Email: danilo123@gmail.com</li>
+                <li>Nome: {{ findContact?.name }}</li>
+                <br>
+                <li>Número: {{findContact?.numberContact }}</li>
+                <br>
+                <li>Email: {{findContact?.email }}</li>
             </ul>
         </div>
     </div>
