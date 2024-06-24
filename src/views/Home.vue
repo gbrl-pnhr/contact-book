@@ -2,7 +2,6 @@
   import structureHome from '@/components/structureHome.vue';
   import axios from 'axios';
 
-
   export default{
     components:{
       structureHome
