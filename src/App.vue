@@ -2,8 +2,6 @@
 </script>
 <template>
   <RouterView/>
-  
-  <!--<structureHome />-->
 </template>
 
 

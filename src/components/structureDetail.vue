@@ -13,6 +13,7 @@ export default{
         findContact(){
             return sourceData.contacts.find(contact => contact.id === this.contactId)
         }
+        
     }
 }
 </script>
