@@ -5,7 +5,12 @@ import axios from 'axios';
 export default{
     data(){
         return{
-            contacts: []
+            contacts: [{
+                id:'',
+                name:'',
+                phoneNumber: '',
+                email:''
+            }]
         }
     },
     mounted(){
