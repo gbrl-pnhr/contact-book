@@ -1,4 +1,5 @@
 <script lang="ts">
+import axios from 'axios';
 import HeaderContactBook from './headerContactBook.vue';
 import sourceData from '@/data.json'
 
@@ -8,7 +9,7 @@ export default{
             contactData: {
                 name: "",
                 id: 0,
-                numberContact: "",
+                phoneNumber: "",
                 email: ""
             },
             contactsList: sourceData.contacts
@@ -19,14 +20,12 @@ export default{
     },
     methods:{
         createNewContact(){
-            if(this.verifyInputs(this.contactData.name, this.contactData.numberContact, this.contactData.email)){
-                this.contactData.id = parseInt(this.contactsList[this.contactsList.length-1].id) + 1;
-                this.contactsList.push({
-                    name: this.contactData.name,
-                    id: this.contactData.id.toString(),
-                    numberContact: this.contactData.numberContact,
-                    email: this.contactData.email
-                });       
+            if(this.verifyInputs(this.contactData.name, this.contactData.phoneNumber, this.contactData.email)){
+                axios
+                .post('https://6674787a75872d0e0a968ff7.mockapi.io/api/v1/contacBook', this.contactData)
+                .then((response) => console.log(response))
+                .catch(error => {console.error(error)})
+                .finally(function(){ });   
             }else{
                 alert("Por favor, preencha todos os campos corretamente");
             } 
@@ -92,16 +91,14 @@ export default{
                 <br>
                 <label>Telefone:</label>
                 <br>
-                <input v-model="contactData.numberContact" type="text" placeholder=" (DD)91234-5678 ou (DD)912345678">
+                <input v-model="contactData.phoneNumber" type="text" placeholder=" (DD)91234-5678 ou (DD)912345678">
                 <br>
                 <label>Email:</label>
                 <br>
                 <input v-model="contactData.email" type="text" placeholder=" usuario@dominio.com">
                 <br><br>
             
-                <RouterLink to = "/" >
                     <button @click="createNewContact" >ADICIONAR</button>
-                </RouterLink>
             </form>
         </div>
         

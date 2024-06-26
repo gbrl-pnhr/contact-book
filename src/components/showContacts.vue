@@ -17,9 +17,9 @@ export default{
 
 <template>
     <div>
-        <RouterLink v-for="contact in contacts" :key="contact.id">
+        <RouterLink v-for="contact in contacts" :key="contact.id" :to="`/detailscontact/${contact.id}`">
             <div class="contact">
-                <p>{{ contact.name }}</p>
+                {{ contact.name }}
             </div><br>
         </RouterLink>
     </div>
