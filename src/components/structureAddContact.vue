@@ -88,9 +88,7 @@ export default{
                 <input v-model="contactData.email" type="text" placeholder=" usuario@dominio.com">
                 <br><br>
             
-                <RouterLink to = "/" >
                     <button @click="createNewContact" >ADICIONAR</button>
-                </RouterLink>
             </form>
         </div>
         

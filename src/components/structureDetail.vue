@@ -32,11 +32,11 @@ export default{
         <HeaderContactBook />
         <div id="details">
             <ul>
-                <li>Nome: {{ findContact?.name }}</li>
+                <!--<li>Nome: {{ findContact?.name }}</li>
                 <br>
                 <li>Número: {{findContact?.phoneNumber }}</li>
                 <br>
-                <li>Email: {{findContact?.email }}</li>
+                <li>Email: {{findContact?.email }}</li>-->
             </ul>
         </div>
     </div>
