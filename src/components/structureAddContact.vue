@@ -1,7 +1,6 @@
 <script lang="ts">
-import axios from 'axios';
 import HeaderContactBook from './headerContactBook.vue';
-import sourceData from '@/data.json'
+import axios from 'axios';
 
 export default{
     data(){
@@ -12,29 +11,32 @@ export default{
                 phoneNumber: "",
                 email: ""
             },
-            contactsList: sourceData.contacts
+            contacts: []
         }
+    },
+    mounted(){
+        axios.get('https://6674787a75872d0e0a968ff7.mockapi.io/api/v1/contacBook')
+           .then(response => this.contacts = response.data)
     },
     components:{
         HeaderContactBook
     },
     methods:{
         createNewContact(){
-            if(this.verifyInputs(this.contactData.name, this.contactData.phoneNumber, this.contactData.email)){
-                axios
-                .post('https://6674787a75872d0e0a968ff7.mockapi.io/api/v1/contacBook', this.contactData)
-                .then((response) => console.log(response))
-                .catch(error => {console.error(error)})
-                .finally(function(){ });   
+            if(this.verifyInputs(this.contactData.phoneNumber, this.contactData.email)){
+                this.contactData.id = parseInt(this.contacts[this.contacts.length-1].id) + 1;
+                axios.post('https://6674787a75872d0e0a968ff7.mockapi.io/api/v1/contacBook', this.contactData)
+                    .then((response)=>console.log(response)) 
+                    .catch(error=>{console.error(error)})  
             }else{
                 alert("Por favor, preencha todos os campos corretamente");
             } 
         },
-        verifyInputs(name: string, phone: string, email: string){
-            if(name === '' || phone === '' || email === ''){
+        verifyInputs(phone: string, email: string){
+            if(phone === '' || email === ''){
                 return false;
             }else{
-                if(this.validateEmail(email) && this.validateName(name) && this.validatePhone(phone)){
+                if(this.validateEmail(email) && this.validatePhone(phone)){
                     return true
                 }else{
                     return false;
@@ -62,19 +64,6 @@ export default{
             }else{
                 return false;
             }
-        },
-        validateName(name: string){
-            let countValidCaracter = 0
-            for(let id = 0; id < name.length; id++){
-                if(['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','ç',' '].includes(name[id].toLowerCase())){
-                    countValidCaracter++;
-                    if(countValidCaracter === name.length){
-                        return true;
-                    }
-                }else{
-                    return false;
-                }   
-            }
         }
     }
 }
@@ -98,7 +87,9 @@ export default{
                 <input v-model="contactData.email" type="text" placeholder=" usuario@dominio.com">
                 <br><br>
             
+                <RouterLink to = "/" >
                     <button @click="createNewContact" >ADICIONAR</button>
+                </RouterLink>
             </form>
         </div>
         
