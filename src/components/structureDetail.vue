@@ -6,7 +6,7 @@ import axios from 'axios';
 export default{
     data(){
         return{
-            contacts: [] as unknown as contactBook
+            contacts: [] as contactBook[]
         }
     },
     mounted(){
@@ -21,7 +21,7 @@ export default{
             return this.$route.params.id;
         },
         findContact(){
-            return this.contacts.find((contacts: { id: string | string[]; }) => contacts.id === this.contactId);        
+            return this.contacts.find((contacts: { id: string; }) => contacts.id === this.contactId);        
         }     
     }
 }

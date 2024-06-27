@@ -7,12 +7,12 @@ export default{
     data(){
         return{
             contactData: {
-                name: "",
+                name:'',
                 id: 0,
                 phoneNumber: "",
                 email: ""
             },
-            contacts: [] as unknown as contactBook
+            contacts: [] as contactBook[]
         }
     },
     mounted(){
@@ -25,7 +25,7 @@ export default{
     methods:{
         createNewContact(){
             if(this.verifyInputs(this.contactData.phoneNumber, this.contactData.email)){
-                this.contactData.id = parseInt(this.contacts.id) + 1;
+                this.contactData.id = (this.contactData.id + 1);
                 axios.post('https://6674787a75872d0e0a968ff7.mockapi.io/api/v1/contacBook', this.contactData)
                     .then((response)=>console.log(response)) 
                     .catch(error=>{console.error(error)})  
