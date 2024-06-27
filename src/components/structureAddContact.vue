@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { contactBook } from '@/services/contacts/typesContacts';
 import HeaderContactBook from './headerContactBook.vue';
 import axios from 'axios';
 
@@ -11,7 +12,7 @@ export default{
                 phoneNumber: "",
                 email: ""
             },
-            contacts: []
+            contacts: [] as unknown as contactBook
         }
     },
     mounted(){
@@ -24,7 +25,7 @@ export default{
     methods:{
         createNewContact(){
             if(this.verifyInputs(this.contactData.phoneNumber, this.contactData.email)){
-                this.contactData.id = parseInt(this.contacts[this.contacts.length-1].id) + 1;
+                this.contactData.id = parseInt(this.contacts.id) + 1;
                 axios.post('https://6674787a75872d0e0a968ff7.mockapi.io/api/v1/contacBook', this.contactData)
                     .then((response)=>console.log(response)) 
                     .catch(error=>{console.error(error)})  

@@ -1,11 +1,12 @@
-<script>
+<script lang="ts">
 import { RouterLink } from 'vue-router';
-import axios from 'axios'; 
+import axios from 'axios';
+import type {contactBook} from '@/services/contacts/typesContacts' 
 
 export default{
     data(){
         return{
-            contacts: []
+            contacts:[] as unknown as contactBook,
         }
     },
     mounted(){

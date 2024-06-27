@@ -1,5 +1,5 @@
 export type contactBook = {
-    id:number,
+    id:string,
     name:string,
     phoneNumber:string,
     email:string,

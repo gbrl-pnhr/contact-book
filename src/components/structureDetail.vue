@@ -1,16 +1,12 @@
 <script lang="ts">
+import type { contactBook } from '@/services/contacts/typesContacts';
 import HeaderContactBook from './headerContactBook.vue';
 import axios from 'axios';
 
 export default{
     data(){
         return{
-            contacts: [{
-                id:'',
-                name:'',
-                phoneNumber: '',
-                email:''
-            }]
+            contacts: [] as unknown as contactBook
         }
     },
     mounted(){
@@ -25,9 +21,8 @@ export default{
             return this.$route.params.id;
         },
         findContact(){
-            return this.contacts.find(contacts => contacts.id === this.contactId);
-        }
-        
+            return this.contacts.find((contacts: { id: string | string[]; }) => contacts.id === this.contactId);        
+        }     
     }
 }
 </script>
