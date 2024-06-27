@@ -1,41 +1,43 @@
 <script lang="ts">
+import type { contactBook } from '@/services/contacts/typesContacts';
 import HeaderContactBook from './headerContactBook.vue';
-import sourceData from '@/data.json'
+import axios from 'axios';
 
 export default{
     data(){
         return{
             contactData: {
-                name: "",
+                name:'',
                 id: 0,
-                numberContact: "",
+                phoneNumber: "",
                 email: ""
             },
-            contactsList: sourceData.contacts
+            contacts: [] as contactBook[]
         }
+    },
+    mounted(){
+        axios.get('https://6674787a75872d0e0a968ff7.mockapi.io/api/v1/contacBook')
+           .then(response => this.contacts = response.data)
     },
     components:{
         HeaderContactBook
     },
     methods:{
         createNewContact(){
-            if(this.verifyInputs(this.contactData.name, this.contactData.numberContact, this.contactData.email)){
-                this.contactData.id = parseInt(this.contactsList[this.contactsList.length-1].id) + 1;
-                this.contactsList.push({
-                    name: this.contactData.name,
-                    id: this.contactData.id.toString(),
-                    numberContact: this.contactData.numberContact,
-                    email: this.contactData.email
-                });       
+            if(this.verifyInputs(this.contactData.phoneNumber, this.contactData.email)){
+                this.contactData.id = (this.contactData.id + 1);
+                axios.post('https://6674787a75872d0e0a968ff7.mockapi.io/api/v1/contacBook', this.contactData)
+                    .then((response)=>console.log(response)) 
+                    .catch(error=>{console.error(error)})  
             }else{
                 alert("Por favor, preencha todos os campos corretamente");
             } 
         },
-        verifyInputs(name: string, phone: string, email: string){
-            if(name === '' || phone === '' || email === ''){
+        verifyInputs(phone: string, email: string){
+            if(phone === '' || email === ''){
                 return false;
             }else{
-                if(this.validateEmail(email) && this.validateName(name) && this.validatePhone(phone)){
+                if(this.validateEmail(email) && this.validatePhone(phone)){
                     return true
                 }else{
                     return false;
@@ -63,19 +65,6 @@ export default{
             }else{
                 return false;
             }
-        },
-        validateName(name: string){
-            let countValidCaracter = 0
-            for(let id = 0; id < name.length; id++){
-                if(['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','ç',' '].includes(name[id].toLowerCase())){
-                    countValidCaracter++;
-                    if(countValidCaracter === name.length){
-                        return true;
-                    }
-                }else{
-                    return false;
-                }   
-            }
         }
     }
 }
@@ -92,7 +81,7 @@ export default{
                 <br>
                 <label>Telefone:</label>
                 <br>
-                <input v-model="contactData.numberContact" type="text" placeholder=" (DD)91234-5678 ou (DD)912345678">
+                <input v-model="contactData.phoneNumber" type="text" placeholder=" (DD)91234-5678 ou (DD)912345678">
                 <br>
                 <label>Email:</label>
                 <br>

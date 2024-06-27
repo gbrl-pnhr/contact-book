@@ -1,8 +1,18 @@
 <script lang="ts">
+import type { contactBook } from '@/services/contacts/typesContacts';
 import HeaderContactBook from './headerContactBook.vue';
-import sourceData from '@/data.json'
+import axios from 'axios';
 
 export default{
+    data(){
+        return{
+            contacts: [] as contactBook[]
+        }
+    },
+    mounted(){
+         axios.get('https://6674787a75872d0e0a968ff7.mockapi.io/api/v1/contacBook')
+             .then(response => this.contacts = response.data)
+    },
     components:{
         HeaderContactBook
     },
@@ -11,8 +21,8 @@ export default{
             return this.$route.params.id;
         },
         findContact(){
-            return sourceData.contacts.find(contact => contact.id === this.contactId)
-        }
+            return this.contacts.find((contacts: { id: string; }) => contacts.id === this.contactId);        
+        }     
     }
 }
 </script>
@@ -24,7 +34,7 @@ export default{
             <ul>
                 <li>Nome: {{ findContact?.name }}</li>
                 <br>
-                <li>Número: {{findContact?.numberContact }}</li>
+                <li>Número: {{findContact?.phoneNumber }}</li>
                 <br>
                 <li>Email: {{findContact?.email }}</li>
             </ul>

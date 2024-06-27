@@ -14,6 +14,7 @@ axios.get('https://6674787a75872d0e0a968ff7.mockapi.io/api/v1/contacBook')
   });
 
 }
+
   export const post = () =>{
     const data ={
       id:0,
@@ -34,6 +35,7 @@ axios.get('https://6674787a75872d0e0a968ff7.mockapi.io/api/v1/contacBook')
     });
   }
 
+
   export const put = () => {
     const data = {
       id:0,
@@ -53,6 +55,7 @@ axios.get('https://6674787a75872d0e0a968ff7.mockapi.io/api/v1/contacBook')
       
     });
   }
+
 export const patch = () =>{
   const data = {
     id:0,
