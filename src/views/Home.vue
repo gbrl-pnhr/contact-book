@@ -9,7 +9,7 @@
     }
   }
 
-axios.get('https://6674787a75872d0e0a968ff7.mockapi.io/api/v1/contacBook')
+axios.get('/api/contacBook')
   .then(response => {
     console.log(response)
   })

@@ -16,7 +16,7 @@ export default{
         }
     },
     mounted(){
-        axios.get('https://6674787a75872d0e0a968ff7.mockapi.io/api/v1/contacBook')
+        axios.get('/api/contacBook')
            .then(response => this.contacts = response.data)
     },
     components:{
@@ -26,7 +26,7 @@ export default{
         createNewContact(){
             if(this.verifyInputs(this.contactData.phoneNumber, this.contactData.email)){
                 this.contactData.id = (this.contactData.id + 1);
-                axios.post('https://6674787a75872d0e0a968ff7.mockapi.io/api/v1/contacBook', this.contactData)
+                axios.post('/api/contacBook', this.contactData) //'https://6674787a75872d0e0a968ff7.mockapi.io/api/v1
                     .then((response)=>console.log(response)) 
                     .catch(error=>{console.error(error)})  
             }else{
