@@ -6,7 +6,7 @@ function apiConfig(baseUrl: string): AxiosRequestConfig {
     };
   }
 
-function initAxios(config: AxiosRequestConfig, token?:any){
+function initAxios(config: AxiosRequestConfig){
     const instance = axios.create(config);
     instance.interceptors.request.use(
         (request) =>{
@@ -22,7 +22,6 @@ function initAxios(config: AxiosRequestConfig, token?:any){
             return response;
         },
         function (error) {
-            alert(error);
             return Promise.reject(error);
         }
     );
@@ -30,8 +29,8 @@ function initAxios(config: AxiosRequestConfig, token?:any){
     return instance;
 }
 
-function api(baseURL= "/api", token?: any) {
-    return initAxios(apiConfig(baseURL), token);
+function api(baseURL= "/api") {
+    return initAxios(apiConfig(baseURL));
   }
 
 
