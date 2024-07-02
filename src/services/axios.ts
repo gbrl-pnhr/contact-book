@@ -1,7 +1,37 @@
-import axios, {type AxiosInstance} from "axios";
+import axios, {type AxiosInstance, type AxiosRequestConfig} from "axios";
 
-const api = axios.create({
-    baseURL: "https://6674787a75872d0e0a968ff7.mockapi.io/api/v1",
-});
+function apiConfig(baseUrl: string): AxiosRequestConfig {
+    return {
+      baseURL: baseUrl,
+    };
+  }
+
+function initAxios(config: AxiosRequestConfig){
+    const instance = axios.create(config);
+    instance.interceptors.request.use(
+        (request) =>{
+            return request;
+        },
+        function (error) {
+            return Promise.reject(error);
+        }
+    )
+
+    instance.interceptors.response.use(
+        (response) => {
+            return response;
+        },
+        function (error) {
+            return Promise.reject(error);
+        }
+    );
+
+    return instance;
+}
+
+function api(baseURL= "/api") {
+    return initAxios(apiConfig(baseURL));
+  }
+
 
 export default api;
