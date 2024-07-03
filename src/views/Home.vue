@@ -1,6 +1,5 @@
 <script lang="ts">
   import structureHome from '@/components/structureHome.vue';
-  import axios from 'axios';
 
 
   export default{
@@ -9,16 +8,6 @@
     }
   }
 
-axios.get('/api/contacBook')
-  .then(response => {
-    console.log(response)
-  })
-  .catch(error => {
-    console.error(error)
-  })
-  .finally(function(){
-    
-  });
 </script>
 
 <template>
