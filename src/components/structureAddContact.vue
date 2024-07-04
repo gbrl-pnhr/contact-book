@@ -1,7 +1,8 @@
 <script lang="ts">
-import type { contactBook } from '@/services/contacts/typesContacts';
+import { ContactBook } from '@/services/contacts/typesContacts';
 import HeaderContactBook from './headerContactBook.vue';
 import axios from 'axios';
+import { ContactListService } from '@/services/contacts/contactList.service';
 
 export default{
     data(){
@@ -12,12 +13,19 @@ export default{
                 phoneNumber: "",
                 email: ""
             },
-            contacts: [] as contactBook[]
+            contacts: [] as ContactBook[]
+        }
+    },
+    computed:{
+        service(){
+            return new ContactListService();
         }
     },
     mounted(){
-        axios.get('/api/contacBook')
-           .then(response => this.contacts = response.data)
+        // axios.get('/api/contacBook')
+        //    .then(response => this.contacts = response.data)
+        this.service.data.pipe().subscribe({next: (response) => this.contacts = response})
+        this.service.showContactsList();
     },
     components:{
         HeaderContactBook
