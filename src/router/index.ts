@@ -18,6 +18,11 @@ const router = createRouter({
       path: '/addcontact',
       name: 'addcontact',
       component: () => import('@/views/addContact.vue')
+    },
+    {
+      path: '/editcontact',
+      name: 'editcontact',
+      component: () => import('@/views/editContact.vue')
     }
   ]
 })
