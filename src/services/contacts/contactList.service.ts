@@ -9,11 +9,15 @@ export class ContactListService {
     
     data: Observable<any> = this.data$.asObservable();
 
-    showContactsList(id?:string) {
+    showContactsList() {
         this._data.getContact().pipe().subscribe({
             next: (response: any) => { 
                 this.data$.next(response);
             }
         });
+    }
+
+    addNewContact(newContact: object){
+        this._data.postContact(newContact);
     }
 }

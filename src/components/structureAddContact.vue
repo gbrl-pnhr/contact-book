@@ -1,7 +1,6 @@
 <script lang="ts">
-import { ContactBook } from '@/services/contacts/typesContacts';
+import type { ContactBook } from '@/services/contacts/typesContacts';
 import HeaderContactBook from './headerContactBook.vue';
-import axios from 'axios';
 import { ContactListService } from '@/services/contacts/contactList.service';
 
 export default{
@@ -22,9 +21,7 @@ export default{
         }
     },
     mounted(){
-        // axios.get('/api/contacBook')
-        //    .then(response => this.contacts = response.data)
-        this.service.data.pipe().subscribe({next: (response) => this.contacts = response})
+        this.service.data.pipe().subscribe({next: (response) => this.contacts = response});
         this.service.showContactsList();
     },
     components:{
@@ -34,9 +31,7 @@ export default{
         createNewContact(){
             if(this.verifyInputs(this.contactData.phoneNumber, this.contactData.email)){
                 this.contactData.id = (this.contactData.id + 1);
-                axios.post('/api/contacBook', this.contactData) //'https://6674787a75872d0e0a968ff7.mockapi.io/api/v1
-                    .then((response)=>console.log(response)) 
-                    .catch(error=>{console.error(error)})  
+                this.service.addNewContact(this.contactData);
             }else{
                 alert("Por favor, preencha todos os campos corretamente");
             } 
@@ -46,7 +41,7 @@ export default{
                 return false;
             }else{
                 if(this.validateEmail(email) && this.validatePhone(phone)){
-                    return true
+                    return true;
                 }else{
                     return false;
                 }
