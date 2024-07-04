@@ -1,23 +1,28 @@
 <script lang="ts">
 import { RouterLink } from 'vue-router';
-import axios from 'axios'; 
-import type { contactBook } from '@/services/contacts/typesContacts';
-
+import { ContactBook } from '@/services/contacts/typesContacts';
+import { ContactListService } from '@/services/contacts/contactList.service';
 
 export default{
     data(){
         return{
-            contacts: [] as contactBook[]
+            contacts: [] as ContactBook[]
         }
     },
     mounted(){
         this.getContact()
     },
+    computed:{
+        service(){
+            return new ContactListService();
+        }
+    },
     methods:{
         getContact(){
-            axios.get('/api/contacBook') //'https://6674787a75872d0e0a968ff7.mockapi.io/api/v1
-            .then(response => this.contacts = response.data)
-
+            // axios.get('/api') //'https://6674787a75872d0e0a968ff7.mockapi.io/api/v1
+            // .then(response => this.contacts = response.data)
+            this.service.data.pipe().subscribe({next:(response) => this.contacts = response})
+            this.service.showContactsList()
         }
     }
 }
