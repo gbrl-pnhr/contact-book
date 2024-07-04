@@ -8,6 +8,8 @@
             <RouterLink to = "/">Home</RouterLink>
             &nbsp &nbsp
             <RouterLink to = "/addcontact">Adicionar Contato</RouterLink>
+            &nbsp &nbsp
+            <RouterLink to = "/editcontact">Editar Contato</RouterLink> 
             </nav>
         </div>
     </header>
