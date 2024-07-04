@@ -1,17 +1,17 @@
 <script lang="ts">
-import type { contactBook } from '@/services/contacts/typesContacts';
+import type { ContactBook } from '@/services/contacts/typesContacts';
 import HeaderContactBook from './headerContactBook.vue';
-import axios from 'axios';
+import { ContactListService } from '@/services/contacts/contactList.service';
 
 export default{
     data(){
         return{
-            contacts: [] as contactBook[]
+            contacts: [] as ContactBook[]
         }
     },
     mounted(){
-         axios.get('/api/contacBook')
-             .then(response => this.contacts = response.data)
+        this.service.data.pipe().subscribe({next:(response) => this.contacts = response});
+        this.service.showContactsList();
     },
     components:{
         HeaderContactBook
@@ -21,7 +21,10 @@ export default{
             return this.$route.params.id;
         },
         findContact(){
-            return this.contacts.find((contacts: { id: string; }) => contacts.id === this.contactId);        
+            return this.contacts.find((contacts) => contacts.id === this.contactId);      
+        },
+        service(){
+            return new ContactListService();
         }     
     }
 }

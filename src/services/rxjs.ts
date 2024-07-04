@@ -12,11 +12,12 @@ const get = <T>(
 };
 
 const post = <T>(
-    baseURL: string,
-    contact: Object
+    url:string,
+    contact: object,
+    baseURL?: string,
 ): Observable<T> => {
     return defer(() =>
-        api(baseURL).post<T>(baseURL, contact)
+        api(baseURL).post<T>(url, contact)
     ).pipe(map((result) => result.data));
 };
 
