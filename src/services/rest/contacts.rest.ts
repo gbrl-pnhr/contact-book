@@ -8,5 +8,9 @@ export class ContactsRest{
     postContact(newContact: object){
         api.post("/contacBook",newContact).pipe().subscribe(() => { newContact });
     }
+
+    deleteContact(contactId: string | string[]){
+        api.delete(`/contacBook/${contactId}`).pipe().subscribe(() => { contactId });
+    }
 }
 

@@ -26,6 +26,11 @@ export default{
         service(){
             return new ContactListService();
         }     
+    },
+    methods:{
+        deleteContact(){
+            this.service.deleteContact(this.contactId);
+        }
     }
 }
 </script>
@@ -42,8 +47,8 @@ export default{
                 <li>Email: {{findContact?.email }}</li>
             </ul>
             <div>
-                <RouterLink to = "/" >
-                    <button @click="" >DELETAR</button>
+                <RouterLink :to = "`/`" >
+                    <button @click="deleteContact" >DELETAR</button>
                 </RouterLink>
                 <RouterLink :to = "`/editcontact/${$route.params.id}`" >
                     <button @click="" >EDITAR</button>

@@ -20,4 +20,8 @@ export class ContactListService {
     addNewContact(newContact: object){
         this._data.postContact(newContact);
     }
+
+    deleteContact(id: string | string[]){
+        this._data.deleteContact(id)
+    }
 }

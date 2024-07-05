@@ -21,4 +21,13 @@ const post = <T>(
     ).pipe(map((result) => result.data));
 };
 
-export default { get, post };
+const deleteR = <T>(
+    url: string, 
+    baseURL?: string
+): Observable<T | void> => {
+    return defer(() => api(baseURL).delete(url)).pipe(
+      map((result) => result.data)
+    );
+};
+
+export default { get, post, delete: deleteR };
