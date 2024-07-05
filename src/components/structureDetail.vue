@@ -41,6 +41,14 @@ export default{
                 <br>
                 <li>Email: {{findContact?.email }}</li>
             </ul>
+            <div>
+                <RouterLink to = "/" >
+                    <button @click="" >DELETAR</button>
+                </RouterLink>
+                <RouterLink :to = "`/editcontact/${$route.params.id}`" >
+                    <button @click="" >EDITAR</button>
+                </RouterLink>
+            </div>
         </div>
     </div>
 </template>

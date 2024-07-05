@@ -24,7 +24,7 @@ routes: [
 
 { path: '/detailscontact/:id', name: 'DetailsContacts', component: detailsContacts},
 
-{ path: '/editcontact', name: 'EditContacts', component: editContact},
+{ path: '/editcontact/:id', name: 'EditContacts', component: editContact},
 
 
 ],

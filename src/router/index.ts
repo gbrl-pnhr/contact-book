@@ -20,7 +20,7 @@ const router = createRouter({
       component: () => import('@/views/addContact.vue')
     },
     {
-      path: '/editcontact',
+      path: '/editcontact/:id',
       name: 'editcontact',
       component: () => import('@/views/editContact.vue')
     }
