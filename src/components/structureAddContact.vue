@@ -15,17 +15,17 @@ export default{
             contacts: [] as ContactBook[]
         }
     },
+    mounted(){
+        this.service.data.pipe().subscribe({next: (response) => this.contacts = response});
+        this.service.showContactsList();
+    },    
+    components:{
+        HeaderContactBook
+    },
     computed:{
         service(){
             return new ContactListService();
         }
-    },
-    mounted(){
-        this.service.data.pipe().subscribe({next: (response) => this.contacts = response});
-        this.service.showContactsList();
-    },
-    components:{
-        HeaderContactBook
     },
     methods:{
         createNewContact(){
@@ -76,16 +76,17 @@ export default{
 <template>
     <div class="conteiner">
         <HeaderContactBook />
+        
         <div class="addContact">
             <form action="">
                 <label>Nome:</label>
                 <br>
                 <input v-model="contactData.name" type="text">
-                <br>
+                <br><br>
                 <label>Telefone:</label>
                 <br>
                 <input v-model="contactData.phoneNumber" type="text" placeholder=" (DD)91234-5678 ou (DD)912345678">
-                <br>
+                <br><br>
                 <label>Email:</label>
                 <br>
                 <input v-model="contactData.email" type="text" placeholder=" usuario@dominio.com">
@@ -120,7 +121,8 @@ export default{
         background-color: #04AA6D;
         border: none;
         color: white;
-        padding: 15px 32px;
+        padding: 10px 16px;
+        margin: 8px 32px 0px 32px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
