@@ -77,7 +77,7 @@ export default{
     <div class="conteiner">
         <HeaderContactBook />
         
-        <div class="addContact">
+        <div class="inputContact">
             <form action="">
                 <label>Nome:</label>
                 <br>
@@ -101,7 +101,7 @@ export default{
     </div>
 </template>
 <style>
-    .addContact{
+    .inputContact{
         background-color: rgb(12, 12, 75);
         color: white;
         font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
