@@ -2,6 +2,8 @@
 import type { ContactBook } from '@/services/contacts/typesContacts';
 import HeaderContactBook from './headerContactBook.vue';
 import { ContactListService } from '@/services/contacts/contactList.service';
+import verifyInputs from '@/util/verifyInputs.util';
+
 
 export default{
     data(){
@@ -29,45 +31,12 @@ export default{
     },
     methods:{
         createNewContact(){
-            if(this.verifyInputs(this.contactData.phoneNumber, this.contactData.email)){
+            if(verifyInputs(this.contactData.phoneNumber, this.contactData.email)){
                 this.contactData.id = (this.contactData.id + 1);
                 this.service.addNewContact(this.contactData);
             }else{
                 alert("Por favor, preencha todos os campos corretamente");
             } 
-        },
-        verifyInputs(phone: string, email: string){
-            if(phone === '' || email === ''){
-                return false;
-            }else{
-                if(this.validateEmail(email) && this.validatePhone(phone)){
-                    return true;
-                }else{
-                    return false;
-                }
-                
-            }
-        },
-        validateEmail(email: string){
-            if(email.includes('@')){
-                let validateEmail = email.split('@');
-                let validateDominion = validateEmail[1].split('.');
-                if(email.includes(' ') || validateEmail[0].length === 0 || validateDominion.length < 2 || validateDominion[0].length === 0 || validateDominion[1] !== "com"){
-                    return false;
-                }else{
-                    return true;
-                }
-            }else{
-                return false;
-            }
-        },
-        validatePhone(phone: string){
-            let verifyPhone = new RegExp('^\\([1-9]{2}\\)((9[0-9]{4}-[0-9]{4})|9[0-9]{8})$');
-            if(verifyPhone.test(phone)){
-                return true;
-            }else{
-                return false;
-            }
         }
     }
 }

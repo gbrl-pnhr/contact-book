@@ -1,8 +1,12 @@
 import api from "../rxjs";
 
 export class ContactsRest{
-    getContact(){
+    getContacts(){
         return api.get("/contacBook");
+    }
+
+    getContact(contactId: string | string[]){
+        return api.get(`/contacBook/${contactId}`);
     }
 
     postContact(newContact: object){

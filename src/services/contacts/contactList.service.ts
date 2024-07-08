@@ -10,7 +10,15 @@ export class ContactListService {
     data: Observable<any> = this.data$.asObservable();
 
     showContactsList() {
-        this._data.getContact().pipe().subscribe({
+        this._data.getContacts().pipe().subscribe({
+            next: (response: any) => { 
+                this.data$.next(response);
+            }
+        });
+    }
+
+    showContact(id: string | string[]){
+        this._data.getContact(id).pipe(take(1)).subscribe({
             next: (response: any) => { 
                 this.data$.next(response);
             }
