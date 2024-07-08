@@ -17,7 +17,7 @@
           <showContacts/>
         </div>  
     </div>
-  </template> 
+</template> 
   <style>
 
     #contactBook{

@@ -1,9 +1,8 @@
 <script lang="ts">
   import structureHome from '@/components/structureHome.vue';
 
-
-  export default{
-    components:{
+  export default {
+    components: {
       structureHome
     }
   }

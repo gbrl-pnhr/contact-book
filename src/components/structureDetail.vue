@@ -6,13 +6,8 @@ import { ContactListService } from '@/services/contacts/contactList.service';
 export default{
     data(){
         return{
-            contactData: {
-                id:"",
-                name:"",
-                phoneNumber:"",
-                email:"",
-            } as ContactBook,
-        }
+            contactData: {} as ContactBook,
+        } 
     },
     mounted(){
         this.service.data.pipe().subscribe({next:(response) => this.contactData = response});

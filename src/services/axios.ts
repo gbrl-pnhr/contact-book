@@ -1,4 +1,4 @@
-import axios, {type AxiosInstance, type AxiosRequestConfig} from "axios";
+import axios, { type AxiosRequestConfig } from "axios";
 
 function apiConfig(baseUrl: string): AxiosRequestConfig {
     return {
@@ -6,10 +6,10 @@ function apiConfig(baseUrl: string): AxiosRequestConfig {
     };
   }
 
-function initAxios(config: AxiosRequestConfig){
+function initAxios(config: AxiosRequestConfig) {
     const instance = axios.create(config);
     instance.interceptors.request.use(
-        (request) =>{
+        (request) => {
             return request;
         },
         function (error) {
@@ -31,7 +31,7 @@ function initAxios(config: AxiosRequestConfig){
 
 function api(baseURL= "/api") {
     return initAxios(apiConfig(baseURL));
-  }
+}
 
 
 export default api;

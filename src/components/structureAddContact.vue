@@ -25,7 +25,7 @@ export default{
         HeaderContactBook
     },
     computed:{
-        service(){
+        service(): ContactListService {
             return new ContactListService();
         }
     },
