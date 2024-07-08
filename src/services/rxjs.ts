@@ -30,4 +30,14 @@ const deleteR = <T>(
     );
 };
 
-export default { get, post, delete: deleteR };
+const put = <T>(
+    url:string,
+    contact: object,
+    baseURL?: string,
+): Observable<T> => {
+    return defer(() =>
+        api(baseURL).put<T>(url, contact)
+    ).pipe(map((result) => result.data));
+};
+
+export default { get, post, delete: deleteR, put };

@@ -24,4 +24,8 @@ export class ContactListService {
     deleteContact(id: string | string[]){
         this._data.deleteContact(id)
     }
+
+    editContact(id: string | string[], editContact: object){
+        this._data.putContact(id, editContact)
+    }
 }
