@@ -1,5 +1,5 @@
 
-function verifyInputs(phone: string, email: string){
+function verifyInputs(phone: string, email: string, name: string): boolean {
     if(phone === '' || email === ''){
         return false;
     }else{
@@ -12,7 +12,7 @@ function verifyInputs(phone: string, email: string){
     }
 }
 
-function validateEmail(email: string){
+function validateEmail(email: string): boolean {
     if(email.includes('@')){
         let validateEmail = email.split('@');
         let validateDominion = validateEmail[1].split('.');
@@ -26,7 +26,7 @@ function validateEmail(email: string){
     }
 }
 
-function validatePhone(phone: string){
+function validatePhone(phone: string): boolean {
     let verifyPhone = new RegExp('^\\([1-9]{2}\\)((9[0-9]{4}-[0-9]{4})|9[0-9]{8})$');
     if(verifyPhone.test(phone)){
         return true;

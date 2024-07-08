@@ -8,12 +8,7 @@ import verifyInputs from '@/util/verifyInputs.util';
 export default{
     data(){
         return{
-            contactData: {
-                id:"",
-                name:"",
-                phoneNumber:"",
-                email:"",
-            } as ContactBook,
+            contactData: {} as ContactBook,
         }
     },
     mounted(){
@@ -22,7 +17,7 @@ export default{
                 this.contactData = response;
             }
         });
-        this.service.showContact(this.$route.params.id);
+        this.service.getContact(this.$route.params.id);
     },
     components:{
         HeaderContactBook
@@ -30,7 +25,7 @@ export default{
 
     methods:{
         editContact(){
-           if(verifyInputs(this.contactData.phoneNumber, this.contactData.email)){
+           if(verifyInputs(this.contactData.phoneNumber, this.contactData.email, this.contactData.name)){
                 this.service.editContact(this.$route.params.id, this.contactData);
             }else{
                 alert("Por favor, preencha todos os campos corretamente");

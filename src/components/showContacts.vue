@@ -10,7 +10,7 @@ export default{
         }
     },
     mounted(){
-        this.getContact();
+        this.getContacts();
     },
     computed:{
         service(){
@@ -18,9 +18,9 @@ export default{
         }
     },
     methods:{
-        getContact(){
+        getContacts(){
             this.service.data.pipe().subscribe({next:(response) => this.contacts = response});
-            this.service.showContactsList();
+            this.service.getContacts();
         }
     }
 }

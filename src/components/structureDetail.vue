@@ -16,7 +16,7 @@ export default{
     },
     mounted(){
         this.service.data.pipe().subscribe({next:(response) => this.contactData = response});
-        this.service.showContact(this.$route.params.id);
+        this.service.getContact(this.$route.params.id);
     },
     components:{
         HeaderContactBook
