@@ -6,30 +6,29 @@ import { ContactListService } from '@/services/contacts/contactList.service';
 export default{
     data(){
         return{
-            contacts: [] as ContactBook[]
+            contactData: {
+                id:"",
+                name:"",
+                phoneNumber:"",
+                email:"",
+            } as ContactBook,
         }
     },
     mounted(){
-        this.service.data.pipe().subscribe({next:(response) => this.contacts = response});
-        this.service.showContactsList();
+        this.service.data.pipe().subscribe({next:(response) => this.contactData = response});
+        this.service.showContact(this.$route.params.id);
     },
     components:{
         HeaderContactBook
     },
     computed:{
-        contactId(){
-            return this.$route.params.id;
-        },
-        findContact(){
-            return this.contacts.find((contacts) => contacts.id === this.contactId);      
-        },
         service(){
             return new ContactListService();
         }     
     },
     methods:{
         deleteContact(){
-            this.service.deleteContact(this.contactId);
+            this.service.deleteContact(this.$route.params.id);
         }
     }
 }
@@ -40,11 +39,11 @@ export default{
         <HeaderContactBook />
         <div id="details">
             <ul>
-                <li>Nome: {{ findContact?.name }}</li>
+                <li>Nome: {{ contactData.name }}</li>
                 <br>
-                <li>Número: {{findContact?.phoneNumber }}</li>
+                <li>Número: {{ contactData.phoneNumber }}</li>
                 <br>
-                <li>Email: {{findContact?.email }}</li>
+                <li>Email: {{ contactData.email }}</li>
             </ul>
             <div>
                 <RouterLink :to = "`/`" >
