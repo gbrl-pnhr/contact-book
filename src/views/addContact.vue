@@ -42,36 +42,26 @@ export default {
 
 <template>
     <div class="conteiner">
-
         <header-contact-book />
-
         <div class="inputContact">
-
             <form action="">
-
                 <label>Nome:</label>
                 <br>
                 <input v-model="contactData.name" type="text">
                 <br><br>
-
                 <label>Telefone:</label>
                 <br>
                 <input v-model="contactData.phoneNumber" type="text" placeholder=" (DD)91234-5678 ou (DD)912345678">
                 <br><br>
-
                 <label>Email:</label>
                 <br>
                 <input v-model="contactData.email" type="text" placeholder=" usuario@dominio.com">
                 <br><br>
-
                 <RouterLink to="/">
                     <button @click="createNewContact">ADICIONAR</button>
                 </RouterLink>
-
             </form>
-
         </div>
-
     </div>
 </template>
 <style>

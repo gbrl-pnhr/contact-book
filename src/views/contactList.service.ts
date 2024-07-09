@@ -1,7 +1,12 @@
 import { BehaviorSubject, Observable, take } from "rxjs";
 import { ContactsRest } from "@/services/rest/contacts.rest";
+import { Alerts } from "@/util/alerts.util";
+
 export class ContactListService {
-    constructor(private _contact = new ContactsRest()) { }
+    constructor(
+        private _contact = new ContactsRest(),
+        private _alertsMethods = Alerts,
+    ) { }
 
     private contact$: BehaviorSubject<any> = new BehaviorSubject<any>([]);
 
@@ -13,10 +18,9 @@ export class ContactListService {
             .subscribe({
                 next: (response: any) => {
                     this.contact$.next(response);
-                    console.log("Deu certo pegar todos os contatos {getContacts()}")
                 },
                 error: () => {
-                    console.log("Deu erro em pegar todos os contatos {getContacts()}")
+                    alert(this._alertsMethods.ALERT_GET_ALL_ERROR);
                 }
             });
     }
@@ -27,10 +31,9 @@ export class ContactListService {
             .subscribe({
                 next: (response: any) => {
                     this.contact$.next(response);
-                    console.log("Deu certo em pegar um contato {getContact()}");
                 },
                 error: () => {
-                    console.log("Deu erro em pegar um contato {getContact()}");
+                    alert(this._alertsMethods.ALERT_GET_ERROR);
                 }
             });
     }
@@ -40,10 +43,10 @@ export class ContactListService {
             .pipe()
             .subscribe({
                 next: () => {
-                    console.log("Deu certo o post");
+                    alert(this._alertsMethods.ALERT_POST_SUCESS);
                 },
                 error: () => {
-                    console.log("Deu erro no post");
+                    alert(this._alertsMethods.ALERT_GET_ERROR);
                 }
             });
     }
@@ -53,10 +56,10 @@ export class ContactListService {
         .pipe()
         .subscribe({
             next: () => {
-                console.log("Deu certo fazer o delete do contato");
+                alert(this._alertsMethods.ALERT_DELETE_SUCESS);
             },
             error: () => {
-                console.log("Deu errado fazer o delete do contato");
+                alert(this._alertsMethods.ALERT_DELETE_ERROR);
             }
         })
     }
@@ -66,10 +69,10 @@ export class ContactListService {
         .pipe()
         .subscribe({
             next: () => {
-                console.log("Deu certo fazer a edição do contato");
+                alert(this._alertsMethods.ALERT_EDIT_SUCESS);
             },
             error: () => {
-                console.log("Deu errado fazer a edição do contato");
+                alert(this._alertsMethods.ALERT_EDIT_ERROR);
             }
         })
     }
