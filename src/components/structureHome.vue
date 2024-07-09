@@ -1,20 +1,12 @@
 <script lang="ts">
- import HeaderContactBook from './headerContactBook.vue';
- import showContacts from './showContacts.vue';
 
- export default{
-  components:{
-    HeaderContactBook,
-    showContacts
-  }
- }
 </script>
 
 <template>
     <div class="conteinerHome">
-        <HeaderContactBook/>
+        <header-contact-book/>
         <div class="blockContacts">
-          <showContacts/>
+          <show-contacts/>
         </div>  
     </div>
   </template> 

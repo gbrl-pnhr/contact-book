@@ -19,7 +19,7 @@ export default{
     },
     methods:{
         getContacts(){
-            this.service.data.pipe().subscribe({next:(response) => this.contacts = response});
+            this.service.contact.pipe().subscribe({next:(response) => this.contacts = response});
             this.service.getContacts();
         }
     }

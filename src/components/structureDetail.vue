@@ -1,25 +1,16 @@
 <script lang="ts">
 import type { ContactBook } from '@/services/contacts/typesContacts';
-import HeaderContactBook from './headerContactBook.vue';
 import { ContactListService } from '@/services/contacts/contactList.service';
 
 export default{
     data(){
         return{
-            contactData: {
-                id:"",
-                name:"",
-                phoneNumber:"",
-                email:"",
-            } as ContactBook,
+            contactData: {} as ContactBook,
         }
     },
     mounted(){
-        this.service.data.pipe().subscribe({next:(response) => this.contactData = response});
+        this.service.contact.pipe().subscribe({next:(response) => this.contactData = response});
         this.service.getContact(this.$route.params.id);
-    },
-    components:{
-        HeaderContactBook
     },
     computed:{
         service(){
@@ -36,7 +27,7 @@ export default{
 
 <template>
     <div class="conteinerDetail">
-        <HeaderContactBook />
+        <header-contact-book />
         <div id="details">
             <ul>
                 <li>Nome: {{ contactData.name }}</li>

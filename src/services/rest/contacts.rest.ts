@@ -10,22 +10,15 @@ export class ContactsRest {
     }
 
     postContact(newContact: object) {
-        api.post("/contacBook", newContact)
-            .pipe()
-            .subscribe(() => { newContact });
-
+        return api.post("/contacBook", newContact)
     }
 
     deleteContact(contactId: string | string[]) {
-        api.delete(`/contacBook/${contactId}`)
-            .pipe()
-            .subscribe(() => { contactId });
+        return api.delete(`/contacBook/${contactId}`);
     }
 
     putContact(contactId: string | string[], editContact: object) {
-        api.put(`/contacBook/${contactId}`, editContact)
-            .pipe()
-            .subscribe(() => { editContact });
+        return api.put(`/contacBook/${contactId}`, editContact);
     }
 }
 

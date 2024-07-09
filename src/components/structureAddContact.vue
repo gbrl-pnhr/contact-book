@@ -1,8 +1,7 @@
 <script lang="ts">
 import type { ContactBook } from '@/services/contacts/typesContacts';
 import { ContactListService } from '@/services/contacts/contactList.service';
-import verifyInputs from '@/util/verifyInputs.util';
-
+import { VerifyContactInputs } from '@/util/verifyInputs.util';
 
 export default {
     data() {
@@ -22,19 +21,20 @@ export default {
     computed: {
         service(): ContactListService {
             return new ContactListService();
-        }
+        },
+        serviceVerifyContact(): VerifyContactInputs {
+            return new VerifyContactInputs();
+        }  
     },
     methods: {
         createNewContact() {
-            if (verifyInputs(this.contactData.phoneNumber, this.contactData.email, this.contactData.name)) {
+            if (this.serviceVerifyContact.verifyInputs(this.contactData.phoneNumber, this.contactData.email, this.contactData.name)) {
                 this.contactData.id = (this.contactData.id + 1);
                 this.service.postNewContact(this.contactData);
-            } else {
-                alert("Por favor, preencha todos os campos corretamente");
-            }
+            } 
         },
         getContacts() {
-            this.service.data
+            this.service.contact
                 .pipe()
                 .subscribe({
                     next: (response) => this.contacts = response
