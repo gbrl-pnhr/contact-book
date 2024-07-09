@@ -1,25 +1,25 @@
 <script lang="ts">
 import { RouterLink } from 'vue-router';
-import type { ContactBook } from '@/services/contacts/typesContacts';
+import type { ContactBook } from '@/model/typesContacts.model';
 import { ContactListService } from '@/views/contactList.service';
 
-export default{
-    data(){
-        return{
+export default {
+    data() {
+        return {
             contacts: [] as ContactBook[]
         }
     },
-    mounted(){
+    mounted() {
         this.getContacts();
     },
-    computed:{
-        service(){
+    computed: {
+        service() {
             return new ContactListService();
         }
     },
-    methods:{
-        getContacts(){
-            this.service.contact.pipe().subscribe({next:(response) => this.contacts = response});
+    methods: {
+        getContacts() {
+            this.service.contact.pipe().subscribe({ next: (response) => this.contacts = response });
             this.service.getContacts();
         }
     }

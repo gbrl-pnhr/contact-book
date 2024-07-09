@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { ContactBook } from '@/services/contacts/typesContacts';
+import type { ContactBook } from '@/model/typesContacts.model';
 import { ContactListService } from '@/views/contactList.service';
 
 export default{
