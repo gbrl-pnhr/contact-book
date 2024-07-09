@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 import type { ContactBook } from '@/services/contacts/typesContacts';
 import { ContactListService } from '@/services/contacts/contactList.service';
 import { VerifyContactInputs } from '@/util/verifyInputs.util';
@@ -124,4 +124,4 @@ input {
 label {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-</style>
+</style> -->

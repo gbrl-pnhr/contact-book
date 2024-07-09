@@ -1,7 +1,7 @@
 <script lang="ts">
 import { RouterLink } from 'vue-router';
 import type { ContactBook } from '@/services/contacts/typesContacts';
-import { ContactListService } from '@/services/contacts/contactList.service';
+import { ContactListService } from '@/views/contactList.service';
 
 export default{
     data(){

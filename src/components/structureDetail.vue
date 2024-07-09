@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 import type { ContactBook } from '@/services/contacts/typesContacts';
 import { ContactListService } from '@/services/contacts/contactList.service';
 
@@ -64,4 +64,4 @@ export default{
       left: 50%;
       transform: translate(-50%, -50%);
     }
-</style>
+</style> -->
