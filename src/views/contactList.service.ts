@@ -1,6 +1,5 @@
 import { BehaviorSubject, Observable, take } from "rxjs";
-import { ContactsRest } from "../rest/contacts.rest";
-
+import { ContactsRest } from "@/services/rest/contacts.rest";
 export class ContactListService {
     constructor(private _contact = new ContactsRest()) { }
 
