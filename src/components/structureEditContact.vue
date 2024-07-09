@@ -1,53 +1,44 @@
 <script lang="ts">
 import type { ContactBook } from '@/services/contacts/typesContacts';
-import HeaderContactBook from './headerContactBook.vue';
 import { ContactListService } from '@/services/contacts/contactList.service';
-import verifyInputs from '@/util/verifyInputs.util';
+import { VerifyContactInputs } from '@/util/verifyInputs.util';
 
 
 export default{
     data(){
         return{
-            contactData: {
-                id:"",
-                name:"",
-                phoneNumber:"",
-                email:"",
-            } as ContactBook,
+            contactData: {} as ContactBook,
         }
     },
     mounted(){
-        this.service.data.pipe().subscribe({
+        this.service.contact.pipe().subscribe({
             next: (response: ContactBook) => {
                 this.contactData = response;
             }
         });
-        this.service.showContact(this.$route.params.id);
+        this.service.getContact(this.$route.params.id);
     },
-    components:{
-        HeaderContactBook
-    },
-
     methods:{
-        editContact(){
-           if(verifyInputs(this.contactData.phoneNumber, this.contactData.email)){
+        editContact() {
+           if(this.serviceVerifyContact.verifyInputs(this.contactData.phoneNumber, this.contactData.email, this.contactData.name)){
                 this.service.editContact(this.$route.params.id, this.contactData);
-            }else{
-                alert("Por favor, preencha todos os campos corretamente");
             } 
         }
     },
     computed:{
-        service(){
+        service(): ContactListService {
             return new ContactListService();
-        }     
+        },
+        serviceVerifyContact(): VerifyContactInputs {
+            return new VerifyContactInputs();
+        }  
     }
 }
 </script>
 
 <template>
     <div class="conteiner">
-        <HeaderContactBook />
+        <header-contact-book />
     
         <div class="inputContact">
             <form @submit.prevent="editContact">
